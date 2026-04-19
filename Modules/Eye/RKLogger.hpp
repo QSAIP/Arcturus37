@@ -12,7 +12,7 @@
      * @brief Show Logs
      * @details This Macro Defines if Logs Should be Shown
      */
-    # define SHOW_LOGS true
+    # define SHOW_LOGS false
     /**
      * @def ARC37_LABEL
      * @brief Arc37 Label

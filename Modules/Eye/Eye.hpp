@@ -50,6 +50,18 @@
     # ifndef _UNISTD_H
         # include <unistd.h>
     # endif // _UNISTD_H
+    //-- Include Thread
+    # ifndef _GLIBCXX_THREAD
+        # include <thread>
+    # endif // _GLIBCXX_THREAD
+    //-- Include Chrono
+    # ifndef _GLIBCXX_CHRONO
+        # include <chrono>
+    # endif // _GLIBCXX_CHRONO
+    //-- Include Image to Ascii
+    # ifndef __RKLTOOLS_IMAGE_TO_ASCII
+        # include "ImageToAscii.hpp"
+    # endif // __RKLTOOLS_IMAGE_TO_ASCII
     //-- BBox Color
     # define ARC37_BBOX_COLOR cv::Scalar(0, 255, 255)
     //-- Model Path
@@ -67,7 +79,7 @@
     //-- Share Data on Network
     # define ARC37_SHARE_DATA 0
     //-- Arcturus37 Destination IP
-    # define ARC37_DESTINATION_IP "192.168.0.104"
+    # define ARC37_DESTINATION_IP "192.168.0.101"
     //-- Arcturus37 Destination Port
     # define ARC37_DESTINATION_PORT 12345
     //-- Check if Project is Running by RKACPB
@@ -170,6 +182,10 @@
              */
             std::string focusOn, lastFocusOn;
             /**
+             * @brief List of Detected Objects
+             */
+            std::vector<std::string> objectsList;
+            /**
              * @brief Last Region of Interest
              */
             int lastRegion = -1;
@@ -209,5 +225,10 @@
             std::vector<Detection> runInference(
                 const cv::Mat   &   input
             );
+            /**
+             * @brief Method to Send and Receive Data from LLM
+             * @return std::string 
+             */
+            std::string communicationLoop();
     };
 # endif // ARCTRUS37_EYE_HPP
